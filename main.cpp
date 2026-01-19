@@ -37,3 +37,20 @@ Node* remove(Node* head, int id) {
   head->set_next(remove(head->get_next(), id));
   return head;
 }
+
+float sum(Node* head) {
+  if (!head) return 0;
+  return head->get_value()->getGPA() + sum(head->get_next());
+}
+
+int count(Node* head) {
+  if (!head) return 0;
+  return 1 + count(head->get_next());
+}
+
+void clear(Node* head) {
+  if (!head) return;
+  clear(head->get_next());
+  delete head->get_value();
+  delete head;
+}
