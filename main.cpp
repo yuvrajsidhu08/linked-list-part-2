@@ -68,13 +68,23 @@ int main() {
   char cmd[20];
 
   while (true) {
+    cout << "Enter command (ADD, PRINT, DELETE, AVERAGE, QUIT): ";
     cin >> cmd;
 
     if (!strcmp(cmd, "ADD")) {
       char f[50], l[50];
       int id;
       float gpa;
-      cin >> f >> l >> id >> gpa;
+
+      cout << "First name: ";
+      cin >> f;
+      cout << "Last name: ";
+      cin >> l;
+      cout << "Student ID: ";
+      cin >> id;
+      cout << "GPA: ";
+      cin >> gpa;
+
       head = add(head, new Student(f, l, id, gpa));
     }
     else if (!strcmp(cmd, "PRINT")) {
@@ -82,15 +92,18 @@ int main() {
     }
     else if (!strcmp(cmd, "DELETE")) {
       int id;
+      cout << "Enter student ID to delete: ";
       cin >> id;
       head = remove(head, id);
     }
     else if (!strcmp(cmd, "AVERAGE")) {
       int c = count(head);
       if (c)
-        cout << fixed << setprecision(2) << sum(head) / c << endl;
+        cout << "Average GPA: "
+             << fixed << setprecision(2)
+             << sum(head) / c << endl;
       else
-        cout << "0.00" << endl;
+        cout << "Average GPA: 0.00" << endl;
     }
     else if (!strcmp(cmd, "QUIT")) {
       clear(head);
