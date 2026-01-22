@@ -67,15 +67,36 @@ int main() {
   Node* head = NULL;
   char cmd[20];
 
-  // Repeatedly process user commands
   while (true) {
     cin >> cmd;
 
-    // Adds a new student
     if (!strcmp(cmd, "ADD")) {
       char f[50], l[50];
       int id;
       float gpa;
       cin >> f >> l >> id >> gpa;
+      head = add(head, new Student(f, l, id, gpa));
+    }
+    else if (!strcmp(cmd, "PRINT")) {
+      print(head);
+    }
+    else if (!strcmp(cmd, "DELETE")) {
+      int id;
+      cin >> id;
+      head = remove(head, id);
+    }
+    else if (!strcmp(cmd, "AVERAGE")) {
+      int c = count(head);
+      if (c)
+        cout << fixed << setprecision(2) << sum(head) / c << endl;
+      else
+        cout << "0.00" << endl;
+    }
+    else if (!strcmp(cmd, "QUIT")) {
+      clear(head);
+      break;
+    }
+  }
 
-
+  return 0;
+}
